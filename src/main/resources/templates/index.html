@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,21 +64,6 @@
             color: #D8E9BC;
         }
         
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-        
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #D8E9BC;
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-        
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -93,6 +78,7 @@
         .hero-left {
             flex: 1;
             z-index: 2;
+            transition: opacity 0.3s ease-in-out;
         }
         
         .hero-label {
@@ -178,17 +164,6 @@
             transform: rotate(-15deg);
         }
         
-        .hero-dots {
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 150px;
-            height: 150px;
-            background-image: radial-gradient(circle, #D8E9BC 2px, transparent 2px);
-            background-size: 20px 20px;
-            opacity: 0.3;
-        }
-        
         .hero-image {
             position: absolute;
             bottom: 0;
@@ -217,7 +192,12 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+        }
+        
+        .dot:hover {
+            background: rgba(216, 233, 188, 0.5);
+            transform: scale(1.2);
         }
         
         .dot.active {
@@ -232,7 +212,7 @@
             background: #35353a;
         }
         
-        .about-label {
+        .section-label {
             font-size: 0.85rem;
             color: #999;
             text-transform: uppercase;
@@ -244,21 +224,7 @@
         .about h2 {
             font-size: 3rem;
             text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .about h3 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            line-height: 1.8;
-            color: #bbb;
+            margin-bottom: 60px;
         }
         
         .about-grid {
@@ -266,7 +232,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             max-width: 1200px;
-            margin: 0 auto 60px;
+            margin: 0 auto;
         }
         
         .about-card {
@@ -299,43 +265,23 @@
             background: #2a2a2e;
         }
         
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .section-header h2 {
+        .projects h2 {
             font-size: 3rem;
-        }
-        
-        .view-all {
-            color: #D8E9BC;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: gap 0.3s;
-        }
-        
-        .view-all:hover {
-            gap: 15px;
+            text-align: center;
+            margin-bottom: 60px;
         }
         
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin-bottom: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .project-card {
             background: #35353a;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             transition: all 0.3s;
             cursor: pointer;
@@ -347,31 +293,12 @@
         }
         
         .project-image {
-            width: 100%;
-            height: 220px;
-            background: linear-gradient(135deg, #D8E9BC, #7a9b4d);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(42, 42, 46, 0.5);
-        }
-        
-        .project-label {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #2a2a2e;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            z-index: 1;
+            height: 200px;
+            background: linear-gradient(135deg, #D8E9BC 0%, #a8c66c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
         }
         
         .project-info {
@@ -379,64 +306,13 @@
         }
         
         .project-info h3 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
         }
         
         .project-meta {
             color: #999;
-            font-size: 0.85rem;
-        }
-        
-        /* Testimonial Section */
-        .testimonial {
-            padding: 100px 60px;
-            background: linear-gradient(135deg, #D8E9BC 0%, #7a9b4d 100%);
-            color: #2a2a2e;
-        }
-        
-        .testimonial-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .testimonial-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            opacity: 0.7;
-        }
-        
-        .testimonial h2 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            line-height: 1.4;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #2a2a2e;
-        }
-        
-        .author-info h4 {
-            font-size: 1rem;
-            margin-bottom: 3px;
-        }
-        
-        .author-info p {
-            font-size: 0.85rem;
-            opacity: 0.7;
+            font-size: 0.9rem;
         }
         
         /* Contact Section */
@@ -445,24 +321,9 @@
             background: #35353a;
         }
         
-        .contact-label {
-            font-size: 0.85rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
         .contact h2 {
             font-size: 3rem;
             text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .contact-subtitle {
-            text-align: center;
-            color: #bbb;
             margin-bottom: 60px;
         }
         
@@ -479,7 +340,6 @@
             display: block;
             margin-bottom: 10px;
             color: #bbb;
-            font-size: 0.9rem;
         }
         
         .form-group input,
@@ -491,7 +351,7 @@
             border-radius: 10px;
             color: #fff;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
         }
         
         .form-group input:focus,
@@ -501,24 +361,24 @@
         }
         
         .form-group textarea {
-            resize: vertical;
             min-height: 150px;
+            resize: vertical;
         }
         
-        .submit-btn {
+        .contact-form button {
             width: 100%;
             padding: 15px;
             background: #D8E9BC;
             color: #2a2a2e;
             border: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
         }
         
-        .submit-btn:hover {
+        .contact-form button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(216, 233, 188, 0.4);
         }
@@ -529,294 +389,31 @@
             background: #2a2a2e;
             text-align: center;
             color: #999;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        footer p {
-            margin: 5px 0;
-        }
-        
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1024px) {
-            nav {
-                padding: 20px 40px;
-            }
-            
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 100px 40px 60px;
-            }
-            
-            .hero-left {
-                margin-bottom: 50px;
-            }
-            
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .hero-tagline {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .hero-image-container {
-                width: 400px;
-                height: 400px;
-            }
-            
-            .hero-image {
-                width: 320px;
-                height: 400px;
-            }
-            
-            .carousel-dots {
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 50px;
-            }
-            
-            .about-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .about, .projects, .contact, .testimonial {
-                padding: 80px 40px;
-            }
-        }
-        
+        /* Responsive */
         @media (max-width: 768px) {
             nav {
-                padding: 15px 25px;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 65px;
-                left: 0;
-                right: 0;
-                background: rgba(42, 42, 46, 0.98);
-                flex-direction: column;
-                gap: 0;
                 padding: 20px;
-                border-bottom: 1px solid rgba(216, 233, 188, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                padding: 12px 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                text-align: center;
-            }
-            
-            nav ul li:last-child {
-                border-bottom: none;
-            }
-            
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
             }
             
             .hero {
-                padding: 90px 25px 40px;
-                min-height: auto;
+                flex-direction: column;
+                padding: 100px 20px 40px;
             }
             
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .hero-label {
-                font-size: 0.75rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1rem;
-                max-width: 100%;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .hero-image-container {
-                width: 300px;
-                height: 300px;
-                margin-top: 30px;
-            }
-            
-            .hero-image {
-                width: 250px;
-                height: 300px;
-            }
-            
-            .hero-dots {
-                width: 100px;
-                height: 100px;
-                top: -30px;
-                right: -30px;
-            }
-            
-            .carousel-dots {
-                bottom: 30px;
-            }
-            
-            .about, .projects, .contact, .testimonial {
-                padding: 60px 25px;
-            }
-            
-            .about h2,
-            .section-header h2,
-            .contact h2 {
-                font-size: 2rem;
-            }
-            
-            .about h3 {
-                font-size: 1.5rem;
-            }
-            
-            .testimonial h2 {
-                font-size: 1.8rem;
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
+            .about-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
             }
             
-            .section-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .project-image {
-                height: 200px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            nav {
-                padding: 12px 20px;
-            }
-            
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .hero {
-                padding: 80px 20px 30px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-tagline {
-                font-size: 0.95rem;
-            }
-            
-            .btn-primary,
-            .btn-secondary {
-                padding: 12px 30px;
-                font-size: 0.9rem;
-            }
-            
-            .hero-image-container {
-                width: 250px;
-                height: 250px;
-            }
-            
             .hero-image {
-                width: 200px;
-                height: 250px;
-            }
-            
-            .carousel-dots {
-                bottom: 20px;
-                gap: 8px;
-            }
-            
-            .dot {
-                width: 10px;
-                height: 10px;
-            }
-            
-            .dot.active {
-                width: 25px;
-            }
-            
-            .about, .projects, .contact, .testimonial {
-                padding: 50px 20px;
-            }
-            
-            .about h2,
-            .section-header h2,
-            .contact h2 {
-                font-size: 1.75rem;
-            }
-            
-            .about h3 {
-                font-size: 1.3rem;
-            }
-            
-            .testimonial h2 {
-                font-size: 1.5rem;
-            }
-            
-            .about-card {
-                padding: 25px 20px;
-            }
-            
-            .about-icon {
-                font-size: 2.5rem;
-            }
-            
-            .project-image {
-                height: 180px;
-            }
-            
-            .project-info {
-                padding: 20px;
-            }
-            
-            .project-info h3 {
-                font-size: 1.1rem;
-            }
-            
-            footer {
-                padding: 30px 20px;
-            }
-            
-            footer p {
-                font-size: 0.85rem;
+                width: 300px;
+                height: 400px;
             }
         }
     </style>
@@ -825,302 +422,238 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">Port<span>folio</span></div>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul id="navMenu">
-            <li><a href="#home" onclick="closeMenu()">HOME</a></li>
-            <li><a href="#about" onclick="closeMenu()">ABOUT</a></li>
-            <li><a href="#projects" onclick="closeMenu()">PROJECTS</a></li>
-            <li><a href="#contact" onclick="closeMenu()">CONTACT</a></li>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#projects">PROJECTS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
         </ul>
     </nav>
-    
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-left">
-            <div class="hero-label">| FULL STACK DEVELOPER</div>
+            <span class="hero-label">FULL STACK DEVELOPER</span>
             <h1>Ankit Shukla</h1>
-            <p class="hero-tagline">B.Tech ECE Student | Full Stack Developer<br>Working at Dkinfotech Software Development Company</p>
+            <p class="hero-tagline">
+                B.Tech ECE Student | Full Stack Developer<br>
+                Working at Dkinfotech Software Development Company
+            </p>
             <div class="hero-buttons">
                 <a href="#contact" class="btn-primary">Contact Me</a>
-                <a href="/downloads/AnkitCV.pdf" class="btn-secondary" download>Download CV</a>
+                <a href="/downloads/AnkitCV.pdf" download class="btn-secondary">Download CV</a>
             </div>
         </div>
         
         <div class="hero-right">
             <div class="hero-image-container">
                 <div class="hero-bg-shape"></div>
-                <div class="hero-dots"></div>
                 <div class="hero-image"></div>
             </div>
         </div>
         
         <div class="carousel-dots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
         </div>
     </section>
-    
+
     <!-- About Section -->
     <section class="about" id="about">
-        <div class="about-label">| ABOUT ME</div>
-        <h2>Full Stack Developer &<br>ECE Engineer</h2>
-        
-        <div class="about-content" style="margin-bottom: 60px;">
-            <p>
-                I'm Ankit Shukla, a B.Tech student in Electronics and Communication Engineering (2025) 
-                with a passion for Full Stack Development. I've successfully completed certification 
-                in Full Stack Java Development covering Core Java, JDBC, Servlets, JSP, Spring Boot, 
-                REST APIs, Hibernate, MySQL, and Frontend technologies.
-            </p>
-            <p style="margin-top: 20px;">
-                Currently serving as Software Intern at Dkinfotech Software Development Company.
-            </p>
-        </div>
-        
-        <h3>Technical Skills</h3>
-        
+        <span class="section-label">WHAT I DO</span>
+        <h2>About Me</h2>
         <div class="about-grid">
             <div class="about-card">
                 <div class="about-icon">💻</div>
-                <h3>Languages</h3>
-                <p style="color: #bbb; font-size: 0.9rem; margin-top: 15px;">
-                    Java, C, C++, Kotlin, Python, SQL, HTML5, CSS3, JavaScript
-                </p>
+                <h3>Full Stack Development</h3>
+                <p>Building complete web applications from frontend to backend</p>
             </div>
-            
+            <div class="about-card">
+                <div class="about-icon">☕</div>
+                <h3>Java & Spring Boot</h3>
+                <p>Expert in Java programming and Spring Framework</p>
+            </div>
             <div class="about-card">
                 <div class="about-icon">🗄️</div>
-                <h3>Databases</h3>
-                <p style="color: #bbb; font-size: 0.9rem; margin-top: 15px;">
-                    MySQL, PostgreSQL, MongoDB, Hibernate
-                </p>
+                <h3>Database Design</h3>
+                <p>MySQL, PostgreSQL, and database optimization</p>
             </div>
-            
-            <div class="about-card">
-                <div class="about-icon">⚙️</div>
-                <h3>Frameworks & Tools</h3>
-                <p style="color: #bbb; font-size: 0.9rem; margin-top: 15px;">
-                    Spring Boot, Node.js, Git, Android Studio, Docker, REST APIs
-                </p>
-            </div>
-            
-            <div class="about-card">
-                <div class="about-icon">🛠️</div>
-                <h3>Other Skills</h3>
-                <p style="color: #bbb; font-size: 0.9rem; margin-top: 15px;">
-                    Excel, PowerPoint, Canva, Arduino IDE, IoT, Embedded Systems
-                </p>
-            </div>
-            
-            <div class="about-card">
-                <div class="about-icon">🎨</div>
-                <h3>Frontend</h3>
-                <p style="color: #bbb; font-size: 0.9rem; margin-top: 15px;">
-                    React, Flexbox, CSS Grid, Responsive Design, UI/UX
-                </p>
-            </div>
-            
-            <div class="about-card">
-                <div class="about-icon">🔧</div>
-                <h3>Backend</h3>
-                <p style="color: #bbb; font-size: 0.9rem; margin-top: 15px;">
-                    JDBC, Servlets, JSP, Microservices, RESTful APIs
-                </p>
-            </div>
-        </div>
-        
-        <div style="margin-top: 60px; padding: 40px; background: #2a2a2e; border-radius: 15px; border-left: 4px solid #D8E9BC; max-width: 1200px; margin-left: auto; margin-right: auto;">
-            <h3 style="margin-bottom: 20px; color: #D8E9BC;">🏆 Awards & Achievements</h3>
-            <ul style="list-style: none; padding: 0;">
-                <li style="padding: 10px 0; color: #bbb; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    🥇 First Prize - Arduino Water Automation System (Dec 2023)
-                </li>
-                <li style="padding: 10px 0; color: #bbb; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    🎮 Local Award Winner - VR Game Design at SVCET (Oct 2024)
-                </li>
-                <li style="padding: 10px 0; color: #bbb; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    📜 Full Stack Java Development Certification - HeyKode (Sep 2024)
-                </li>
-                <li style="padding: 10px 0; color: #bbb;">
-                    💼 Internship at Dkinfotech Software Development Company (May 2025)
-                </li>
-            </ul>
         </div>
     </section>
-    
+
     <!-- Projects Section -->
     <section class="projects" id="projects">
-        <div class="section-header">
-            <h2>Featured Projects</h2>
-            <a href="https://github.com/Ankit-Shukla0" class="view-all" target="_blank">View all on GitHub →</a>
-        </div>
-        
+        <span class="section-label">MY WORK</span>
+        <h2>Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-image">
-                    <div class="project-label">WEB APPLICATION</div>
-                </div>
-                <div class="project-info">
-                    <h3>Bank Web Application Clone</h3>
-                    <p class="project-meta">User authentication, transactions, responsive design</p>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #7a9b4d, #D8E9BC);">
-                    <div class="project-label">IOT PROJECT</div>
-                </div>
-                <div class="project-info">
-                    <h3>RFID Attendance System</h3>
-                    <p class="project-meta">NodeMCU ESP8266, RC522 module, real-time tracking</p>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #a8c66c, #7a9b4d);">
-                    <div class="project-label">WEB APPLICATION</div>
-                </div>
+                <div class="project-image">🌐</div>
                 <div class="project-info">
                     <h3>Portfolio Website</h3>
-                    <p class="project-meta">Spring Boot, Thymeleaf, responsive design</p>
+                    <p class="project-meta">Spring Boot, Thymeleaf, MySQL</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">🛒</div>
+                <div class="project-info">
+                    <h3>E-Commerce Platform</h3>
+                    <p class="project-meta">Java, Spring, REST API</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">📱</div>
+                <div class="project-info">
+                    <h3>Task Manager App</h3>
+                    <p class="project-meta">React, Node.js, MongoDB</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Contact Section -->
+    <!-- Contact Section -->
+<section class="contact" id="contact">
+    <span class="section-label">GET IN TOUCH</span>
+    <h2>Contact Me</h2>
     
-    <!-- Testimonial Section -->
-    <section class="testimonial">
-        <div class="testimonial-content">
-            <div class="testimonial-label">| LEADERSHIP</div>
-            <h2>Building the future through<br>technology & innovation</h2>
-            <div class="testimonial-author">
-                <div class="author-avatar"></div>
-                <div class="author-info">
-                    <h4>Software Developer</h4>
-                    <p>Fresher</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section with FormSubmit -->
-    <section class="contact" id="contact">
-        <div class="contact-label">| GET IN TOUCH</div>
-        <h2>Let's work together</h2>
-        <p class="contact-subtitle">Have a project in mind? Let's discuss and bring it to life.</p>
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="form">
         
-        <div style="max-width: 600px; margin: 0 auto 40px; padding: 30px; background: #2a2a2e; border-radius: 15px; text-align: center;">
-            <p style="color: #bbb; margin-bottom: 15px;">
-                📧 Email: <a href="mailto:ankitshukla9135@gmail.com" style="color: #D8E9BC; text-decoration: none;">ankitshukla9135@gmail.com</a>
-            </p>
-            <p style="color: #bbb; margin-bottom: 15px;">
-                📱 Phone: <a href="tel:+917488561958" style="color: #D8E9BC; text-decoration: none;">+91 7488561958</a>
-            </p>
-            <p style="color: #bbb;">
-                💼 LinkedIn: <a href="https://www.linkedin.com/in/ankit-shukla-0613452a7/" target="_blank" style="color: #D8E9BC; text-decoration: none;">linkedin.com/in/ankit-shukla</a>
-            </p>
+        <!-- Your Access key - Replace YOUR_ACCESS_KEY_HERE with actual key -->
+        <input type="hidden" name="access_key" value="f0c2d25f-6a31-4b4b-86a3-73a11ba8bdef">
+        
+        <!-- Subject line -->
+        <input type="hidden" name="subject" value="New Portfolio Contact - Ankit Shukla">
+        
+        <!-- From Name -->
+        <input type="hidden" name="from_name" value="Portfolio Website - Ankit Shukla">
+        
+        <!-- Redirect after submission -->
+        <input type="hidden" name="redirect" value="https://myportfolio-f5bk.onrender.com/#contact">
+        
+        <!-- Bot protection -->
+        <input type="checkbox" name="botcheck" style="display: none;">
+        
+        <!-- Name Field -->
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" required>
         </div>
         
-        <!-- FormSubmit Contact Form -->
-        <form action="https://formsubmit.co/ankitshukla9135@gmail.com" method="POST" class="contact-form">
-            <!-- FormSubmit Configuration -->
-            <input type="hidden" name="_subject" value="🚀 New Portfolio Contact Message!">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="http://localhost:8080/#contact">
-            <input type="text" name="_honey" style="display:none">
-            
-            <div class="form-group">
-                <label>Your Name *</label>
-                <input type="text" name="Name" placeholder="Enter your name" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Your Email *</label>
-                <input type="email" name="Email" placeholder="Enter your email" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Your Message *</label>
-                <textarea name="Message" placeholder="Enter your message" rows="6" required></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </section>
-    
+        <!-- Email Field -->
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+        
+        <!-- Message Field -->
+        <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" required></textarea>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit">Send Message</button>
+        
+    </form>
+</section>
+
+
     <!-- Footer -->
     <footer>
-        <p>© 2025 Ankit Shukla | Electronics & Communication Engineering | Full Stack Java Developer</p>
-        <p>Chittor, Andhra Pradesh | SVCET(A)</p>
+        <p>&copy; 2025 Ankit Shukla. All rights reserved.</p>
     </footer>
-    
+
+    <!-- Carousel JavaScript -->
     <script>
-// Carousel functionality
-let currentSlide = 0;
-const slides = [
-    {
-        title: "Ankit Shukla",
-        subtitle: "FULL STACK DEVELOPER",
-        description: "B.Tech ECE Student | Full Stack Developer<br>Working at Dkinfotech Software Development Company"
-    },
-    {
-        title: "Ankit Shukla",
-        subtitle: "JAVA DEVELOPER",
-        description: "Specialized in Spring Boot, REST APIs & MySQL<br>Building scalable web applications"
-    },
-    {
-        title: "Ankit Shukla",
-        subtitle: "WEB DEVELOPER",
-        description: "Creating responsive and modern web experiences<br>HTML, CSS, JavaScript, React"
-    },
-    {
-        title: "Ankit Shukla",
-        subtitle: "BACKEND ENGINEER",
-        description: "Expert in server-side development<br>Java, Spring Framework, Database Design"
-    },
-    {
-        title: "Ankit Shukla",
-        subtitle: "PROBLEM SOLVER",
-        description: "Passionate about coding and innovation<br>Always learning new technologies"
-    }
-];
-
-function showSlide(index) {
-    currentSlide = index;
-    
-    // Update content
-    document.querySelector('.hero h1').textContent = slides[index].title;
-    document.querySelector('.hero-label').textContent = slides[index].subtitle;
-    document.querySelector('.hero-tagline').innerHTML = slides[index].description;
-    
-    // Update dots
-    document.querySelectorAll('.dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-}
-
-// Dot click functionality
-document.querySelectorAll('.dot').forEach((dot, index) => {
-    dot.addEventListener('click', () => showSlide(index));
-});
-
-// Auto-slide every 5 seconds
-setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}, 5000);
-
-// Initialize first slide
-showSlide(0);
-</script>
-
+    (function() {
+        'use strict';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            
+            const slides = [
+                {
+                    label: "FULL STACK DEVELOPER",
+                    title: "Ankit Shukla",
+                    description: "B.Tech ECE Student | Full Stack Developer<br>Working at Dkinfotech Software Development Company"
+                },
+                {
+                    label: "JAVA DEVELOPER",
+                    title: "Ankit Shukla",
+                    description: "Specialized in Spring Boot, REST APIs & MySQL<br>Building scalable enterprise applications"
+                },
+                {
+                    label: "WEB DEVELOPER",
+                    title: "Ankit Shukla",
+                    description: "Creating responsive and modern web experiences<br>Expert in HTML5, CSS3, JavaScript & React"
+                },
+                {
+                    label: "BACKEND ENGINEER",
+                    title: "Ankit Shukla",
+                    description: "Expert in server-side development<br>Java, Spring Framework, Microservices Architecture"
+                },
+                {
+                    label: "PROBLEM SOLVER",
+                    title: "Ankit Shukla",
+                    description: "Passionate about coding and innovation<br>Always learning and exploring new technologies"
+                }
+            ];
+            
+            const heroLabel = document.querySelector('.hero-label');
+            const heroTitle = document.querySelector('.hero h1');
+            const heroTagline = document.querySelector('.hero-tagline');
+            const heroLeft = document.querySelector('.hero-left');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (!heroLabel || !heroTitle || !heroTagline || dots.length === 0) {
+                console.error('Carousel elements not found');
+                return;
+            }
+            
+            function showSlide(index) {
+                if (heroLeft) {
+                    heroLeft.style.opacity = '0';
+                }
+                
+                setTimeout(function() {
+                    heroLabel.textContent = slides[index].label;
+                    heroTitle.textContent = slides[index].title;
+                    heroTagline.innerHTML = slides[index].description;
+                    
+                    dots.forEach(function(dot, i) {
+                        if (i === index) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                    
+                    if (heroLeft) {
+                        heroLeft.style.opacity = '1';
+                    }
+                    
+                    currentSlide = index;
+                }, 300);
+            }
+            
+            dots.forEach(function(dot, index) {
+                dot.addEventListener('click', function() {
+                    showSlide(index);
+                });
+            });
+            
+            setInterval(function() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }, 5000);
+            
+            showSlide(0);
+            console.log('Carousel initialized!');
+        });
+    })();
+    </script>
 </body>
 </html>
