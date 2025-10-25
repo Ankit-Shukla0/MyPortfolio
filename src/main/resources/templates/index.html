@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ankit Shukla - Full Stack Developer Portfolio</title>
-    <meta name="description" content="Ankit Shukla - Full Stack Java Developer Portfolio. B.Tech ECE Student specializing in Spring Boot, REST APIs, and Web Development.">
+    <meta name="description" content="Ankit Shukla - Full Stack Java Developer specializing in Spring Boot, REST APIs, and Web Development.">
     <style>
         * {
             margin: 0;
@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
         
-        /* Navigation */
+        /* Navigation - Responsive */
         nav {
             position: fixed;
             top: 0;
@@ -41,27 +41,80 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
+            z-index: 1001;
         }
         
         .logo span {
             color: #D8E9BC;
         }
         
-        nav ul {
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+        
+        /* Navigation Menu */
+        .nav-menu {
             display: flex;
             list-style: none;
             gap: 40px;
+            margin: 0;
+            padding: 0;
         }
         
-        nav a {
+        .nav-menu li {
+            list-style: none;
+        }
+        
+        .nav-link {
             color: #fff;
             text-decoration: none;
             font-size: 0.95rem;
             transition: color 0.3s;
+            position: relative;
         }
         
-        nav a:hover {
+        .nav-link:hover {
             color: #D8E9BC;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #D8E9BC;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
         }
         
         /* Hero Section */
@@ -391,10 +444,45 @@
             color: #999;
         }
         
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             nav {
                 padding: 20px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(42, 42, 46, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                gap: 0;
+                padding: 20px 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                padding: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-link {
+                font-size: 1.1rem;
             }
             
             .hero {
@@ -406,31 +494,54 @@
                 font-size: 2.5rem;
             }
             
+            .hero-image {
+                width: 300px;
+                height: 400px;
+            }
+            
+            .hero-image-container {
+                width: 350px;
+                height: 450px;
+            }
+            
+            .carousel-dots {
+                left: 20px;
+                bottom: 50px;
+            }
+            
             .about-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
             }
             
-            .hero-image {
-                width: 300px;
-                height: 400px;
+            .about,
+            .projects,
+            .contact {
+                padding: 60px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Responsive Navigation -->
     <nav>
         <div class="logo">Port<span>folio</span></div>
-        <ul>
-            <li><a href="#home">HOME</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#projects">PROJECTS</a></li>
-            <li><a href="#contact">CONTACT</a></li>
+        
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" class="nav-link">HOME</a></li>
+            <li><a href="#about" class="nav-link">ABOUT</a></li>
+            <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+            <li><a href="#contact" class="nav-link">CONTACT</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Carousel -->
     <section class="hero" id="home">
         <div class="hero-left">
             <span class="hero-label">FULL STACK DEVELOPER</span>
@@ -513,60 +624,79 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <!-- Contact Section -->
-<section class="contact" id="contact">
-    <span class="section-label">GET IN TOUCH</span>
-    <h2>Contact Me</h2>
-    
-    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="form">
+    <!-- Contact Section with Web3Forms -->
+    <section class="contact" id="contact">
+        <span class="section-label">GET IN TOUCH</span>
+        <h2>Contact Me</h2>
         
-        <!-- Your Access key - Replace YOUR_ACCESS_KEY_HERE with actual key -->
-        <input type="hidden" name="access_key" value="f0c2d25f-6a31-4b4b-86a3-73a11ba8bdef">
-        
-        <!-- Subject line -->
-        <input type="hidden" name="subject" value="New Portfolio Contact - Ankit Shukla">
-        
-        <!-- From Name -->
-        <input type="hidden" name="from_name" value="Portfolio Website - Ankit Shukla">
-        
-        <!-- Redirect after submission -->
-        <input type="hidden" name="redirect" value="https://myportfolio-f5bk.onrender.com/#contact">
-        
-        <!-- Bot protection -->
-        <input type="checkbox" name="botcheck" style="display: none;">
-        
-        <!-- Name Field -->
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" required>
-        </div>
-        
-        <!-- Email Field -->
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" required>
-        </div>
-        
-        <!-- Message Field -->
-        <div class="form-group">
-            <label>Message</label>
-            <textarea name="message" required></textarea>
-        </div>
-        
-        <!-- Submit Button -->
-        <button type="submit">Send Message</button>
-        
-    </form>
-</section>
-
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="form">
+            <!-- Replace YOUR_ACCESS_KEY_HERE with your actual Web3Forms key -->
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+            <input type="hidden" name="subject" value="New Portfolio Contact - Ankit Shukla">
+            <input type="hidden" name="from_name" value="Portfolio Website - Ankit Shukla">
+            <input type="hidden" name="redirect" value="https://myportfolio-f5bk.onrender.com/#contact">
+            <input type="checkbox" name="botcheck" style="display: none;">
+            
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" required></textarea>
+            </div>
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Ankit Shukla. All rights reserved.</p>
     </footer>
 
-    <!-- Carousel JavaScript -->
+    <!-- JavaScript -->
+    
+    <!-- Hamburger Menu Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navMenu.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    });
+    </script>
+    
+    <!-- Carousel Slider Script -->
     <script>
     (function() {
         'use strict';
@@ -609,7 +739,6 @@
             const dots = document.querySelectorAll('.dot');
             
             if (!heroLabel || !heroTitle || !heroTagline || dots.length === 0) {
-                console.error('Carousel elements not found');
                 return;
             }
             
@@ -651,7 +780,6 @@
             }, 5000);
             
             showSlide(0);
-            console.log('Carousel initialized!');
         });
     })();
     </script>
